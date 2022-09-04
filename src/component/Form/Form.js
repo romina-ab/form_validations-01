@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
+import useInput from "../../hooks/use-input";
 import "./Form.css";
-const Form = () => {
-  const [userInput, setUserInput] = useState({});
-  const [userData, setUserData] = useState({
-    name: "",
-    lastName: "",
-    password: "1111",
-  });
+const Form = (props) => {
+  
+  const [enteredData, setEnteredData] = useState("");
+  const [enteredDataIsTouched, setEnteredDataIsTouched] = useState(false);
+  const enteredDataIsValid = enteredData.trim() !== "";
+  const inputIsInvalid = !enteredDataIsValid && enteredDataIsTouched;
+  let formIsValid = false;
+  const inputClasses = inputIsInvalid ? "invalid" : "";
+  
+  if (enteredDataIsValid) {
+    formIsValid = true;
+  }
 
   const changeHandler = (e) => {
-    setUserInput(e.target.value);
-    console.log(userInput);
+    setEnteredData(e.target.value);
   };
 
-  //double click
+  const inputBlurHandler = () => {
+    setEnteredDataIsTouched(true);
+  };
+
   const submitHandler = (e) => {
-    alert("submit");
     e.preventDefault();
-    //name = Object.keys(userData)[0]
+    setEnteredDataIsTouched(true);
+    if (!enteredDataIsValid) {
+      return;
+    }
+    console.log(enteredData);
+    setEnteredData("");
+    setEnteredDataIsTouched(false);
   };
 
   return (
@@ -27,31 +40,49 @@ const Form = () => {
         <div>
           <div>
             <label htmlFor="name-input"> Name :</label>
-            <input type="text" id="name-input" className="invalid" onChange={changeHandler}></input>
+            <input
+              type="text"
+              id="name-input"
+              onChange={changeHandler}
+              className={inputClasses}
+              value={enteredData}
+              onBlur={inputBlurHandler}
+            ></input>
+            {inputIsInvalid && <p className="empty-error">Must not be empty</p>}
           </div>
-          <label htmlFor="lastName-input">Last name :</label>
+          {/* <label htmlFor="lastName-input">Last name :</label>
           <input
             type="text"
             id="lastName-input"
             onChange={changeHandler}
-          ></input>
+            className={inputClasses}
+              value={enteredData}
+          ></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
           <label htmlFor="email-input">Email adress :</label>
-          <input type="email" id="email-input" className="invalid" onChange={changeHandler}></input>
+          <input type="email" id="email-input" className="invalid" onChange={changeHandler} className={inputClasses}
+              value={enteredData}></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
           <label htmlFor="phoneNumber-input">Phone number :</label>
           <input
             type="text"
             id="phoneNumber-input"
             onChange={changeHandler}
-          ></input>
+            className={inputClasses}
+              value={enteredData}
+          ></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
           <label htmlFor="mobileNumber-input">Mobile number :</label>
           <input
             type="number"
             id="mobileNumber-input"
             onChange={changeHandler}
-          ></input>
+            className={inputClasses}
+              value={enteredData}
+          ></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
           <label htmlFor="adress-input">Adress :</label>
-          <input type="text" id="adress-input" onChange={changeHandler}></input>
-          <button type="submit" disabled>Submit</button>
+          <input type="text" id="adress-input" onChange={changeHandler} className={inputClasses}
+              value={enteredData}></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>} */}
+          <button type="submit" disabled={!formIsValid}>
+            Submit
+          </button>
         </div>
       </form>
     </div>

@@ -7,19 +7,30 @@
 .form-container button {
   background: #5a92af;
   border: 1px solid #5a92af;
-  padding: 0.5rem;
-  border: none;
+  padding: 0.35rem 1rem;
   border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
   font-family: inherit;
   color: white;
+  margin-top: 1rem;
+  
 }
-.form-container button:hover {
+.form-container button:hover,
+.form-container button:focus {
+  
   background: #d9f9f4;
-  border: 1px solid #437d9b;
+  border:2px solid #437d9b;
   color: #437d9b;
   cursor: pointer;
+  
+}
+.form-container button:disabled,
+.form-container button:disabled:hover,
+.form-container button:disabled:focus {
+  background: #cccc;
+  color: black;
+  border: #a1a1a1;
+  cursor: not-allowed;
 }
 .form-container {
   background: #d9f0f9;
@@ -33,10 +44,10 @@ input {
   width: 100%;
   font-family: inherit;
 }
-.form-container :invalid {
-    background-color: #faacac;
-    border-color: red !important;
-  }
+.form-container .invalid {
+  background-color: #faacac;
+  border: 2px solid red !important;
+}
 .form-container input {
   padding: 0.25rem 0.5rem;
 }
@@ -46,26 +57,10 @@ input {
   border: 1px solid #5a93aff5;
   background: #5a93af9c;
 }
-/* .form-container input.invalid{
-    background-color: #faacac;
-    border-color: red;
-}*/
-
-
-.form-container button[type="submit"] {
-  margin-top: 1rem;
-  display: block;
-}
 .form-container label {
   font-weight: bold;
 }
 
-.form-container button[disabled]{
-    background: #cccc;
-    color:#a1a1a1;
-    border:#a1a1a1;
-    cursor: not-allowed;
-}
 @media (min-width: 40rem) {
   .form-container {
     margin: auto;
@@ -76,4 +71,9 @@ input {
   .form-title {
     font-size: 1.7rem;
   }
+}
+.empty-error {
+  color: red;
+  margin: 0;
+  font-size: 13px;
 }
