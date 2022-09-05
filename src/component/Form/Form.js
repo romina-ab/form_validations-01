@@ -1,36 +1,95 @@
-import React, {  useState } from "react";
 import useInput from "../../hooks/use-input";
+
 import "./Form.css";
 const Form = (props) => {
-  
-  const [enteredData, setEnteredData] = useState("");
-  const [enteredDataIsTouched, setEnteredDataIsTouched] = useState(false);
-  const enteredDataIsValid = enteredData.trim() !== "";
-  const inputIsInvalid = !enteredDataIsValid && enteredDataIsTouched;
   let formIsValid = false;
-  const inputClasses = inputIsInvalid ? "invalid" : "";
-  
-  if (enteredDataIsValid) {
+  const {
+    enteredData: nameEnteredData,
+    reset: nameReset,
+    inputIsInvalid: nameInputIsInvalid,
+    enteredDataIsValid: nameEnteredDataIsValid,
+    valueChangeHandler: nameValueChangeHandler,
+    inputBlurHandler: nameInputBlurHandler,
+  } = useInput((nameEnteredData) => nameEnteredData.trim() !== "");
+  const nameInputClasses = nameInputIsInvalid ? "invalid" : "";
+
+  const {
+    enteredData: emailEnteredData,
+    reset: emailReset,
+    inputIsInvalid: emailInputIsInvalid,
+    enteredDataIsValid: emailEnteredDataIsValid,
+    valueChangeHandler: emailValueChangeHandler,
+    inputBlurHandler: emailInputBlurHandler,
+  } = useInput((emailEnteredData) => emailEnteredData.includes("@"));
+  const emailInputClasses = emailInputIsInvalid ? "invalid" : "";
+
+  const {
+    enteredData: lastNameEnteredData,
+    reset: lastNameReset,
+    inputIsInvalid: lastNameInputIsInvalid,
+    enteredDataIsValid: lastNameEnteredDataIsValid,
+    valueChangeHandler: lastNameValueChangeHandler,
+    inputBlurHandler: lastNameInputBlurHandler,
+  } = useInput((lastNameEnteredData) => lastNameEnteredData.trim() !== "");
+  const lastNameInputClasses = lastNameInputIsInvalid ? "invalid" : "";
+
+  const {
+    enteredData: phoneNumberEnteredData,
+    reset: phoneNumberReset,
+    inputIsInvalid: phoneNumberInputIsInvalid,
+    enteredDataIsValid: phoneNumberEnteredDataIsValid,
+    valueChangeHandler: phoneNumberValueChangeHandler,
+    inputBlurHandler: phoneNumberInputBlurHandler,
+  } = useInput(
+    (phoneNumberEnteredData) => phoneNumberEnteredData.trim() !== ""
+  );
+  const phoneNumberInputClasses = phoneNumberInputIsInvalid ? "invalid" : "";
+
+  const {
+    enteredData: mobileNumberEnteredData,
+    reset: mobileNumberReset,
+    inputIsInvalid: mobileNumberInputIsInvalid,
+    enteredDataIsValid: mobileNumberEnteredDataIsValid,
+    valueChangeHandler: mobileNumberValueChangeHandler,
+    inputBlurHandler: mobileNumberInputBlurHandler,
+  } = useInput(
+    (mobileNumberEnteredData) => mobileNumberEnteredData.trim() !== ""
+  );
+  const mobileNumberInputClasses = mobileNumberInputIsInvalid ? "invalid" : "";
+
+  const {
+    enteredData: adressEnteredData,
+    reset: adressReset,
+    inputIsInvalid: adressInputIsInvalid,
+    enteredDataIsValid: adressEnteredDataIsValid,
+    valueChangeHandler: adressValueChangeHandler,
+    inputBlurHandler: adressInputBlurHandler,
+  } = useInput((adressEnteredData) => adressEnteredData.trim() !== "");
+  const adressInputClasses = adressInputIsInvalid ? "invalid" : "";
+  if (
+    nameEnteredDataIsValid &&
+    emailEnteredDataIsValid &&
+    lastNameEnteredDataIsValid &&
+    phoneNumberEnteredDataIsValid &&
+    mobileNumberEnteredDataIsValid &&
+    adressEnteredDataIsValid
+  ) {
     formIsValid = true;
   }
 
-  const changeHandler = (e) => {
-    setEnteredData(e.target.value);
-  };
-
-  const inputBlurHandler = () => {
-    setEnteredDataIsTouched(true);
-  };
-
   const submitHandler = (e) => {
     e.preventDefault();
-    setEnteredDataIsTouched(true);
-    if (!enteredDataIsValid) {
+    if (!formIsValid) {
       return;
     }
-    console.log(enteredData);
-    setEnteredData("");
-    setEnteredDataIsTouched(false);
+    console.log(nameEnteredData);
+    console.log(emailEnteredData);
+    nameReset();
+    lastNameReset();
+    emailReset();
+    phoneNumberReset();
+    mobileNumberReset();
+    adressReset();
   };
 
   return (
@@ -43,44 +102,92 @@ const Form = (props) => {
             <input
               type="text"
               id="name-input"
-              onChange={changeHandler}
-              className={inputClasses}
-              value={enteredData}
-              onBlur={inputBlurHandler}
+              onChange={nameValueChangeHandler}
+              className={nameInputClasses}
+              value={nameEnteredData}
+              onBlur={nameInputBlurHandler}
             ></input>
-            {inputIsInvalid && <p className="empty-error">Must not be empty</p>}
+            {nameInputIsInvalid && (
+              <p className="empty-error">Must not be empty</p>
+            )}
           </div>
-          {/* <label htmlFor="lastName-input">Last name :</label>
-          <input
-            type="text"
-            id="lastName-input"
-            onChange={changeHandler}
-            className={inputClasses}
-              value={enteredData}
-          ></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
-          <label htmlFor="email-input">Email adress :</label>
-          <input type="email" id="email-input" className="invalid" onChange={changeHandler} className={inputClasses}
-              value={enteredData}></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
-          <label htmlFor="phoneNumber-input">Phone number :</label>
-          <input
-            type="text"
-            id="phoneNumber-input"
-            onChange={changeHandler}
-            className={inputClasses}
-              value={enteredData}
-          ></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
-          <label htmlFor="mobileNumber-input">Mobile number :</label>
-          <input
-            type="number"
-            id="mobileNumber-input"
-            onChange={changeHandler}
-            className={inputClasses}
-              value={enteredData}
-          ></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>}
-          <label htmlFor="adress-input">Adress :</label>
-          <input type="text" id="adress-input" onChange={changeHandler} className={inputClasses}
-              value={enteredData}></input> {inputIsInvalid&&<p className="empty-error">Must not be empty</p>} */}
-          <button type="submit" disabled={!formIsValid}>
+          <div>
+            {" "}
+            <label htmlFor="lastName-input">LastName :</label>
+            <input
+              type="lastName"
+              id="lastName-input"
+              onChange={lastNameValueChangeHandler}
+              className={lastNameInputClasses}
+              value={lastNameEnteredData}
+              onBlur={lastNameInputBlurHandler}
+            ></input>{" "}
+            {lastNameInputIsInvalid && (
+              <p className="empty-error">Must not be empty</p>
+            )}
+          </div>
+          <div>
+            <label htmlFor="email-input">Email adress:</label>
+            <input
+              type="text"
+              id="email-input"
+              onChange={emailValueChangeHandler}
+              className={emailInputClasses}
+              value={emailEnteredData}
+              onBlur={emailInputBlurHandler}
+            ></input>{" "}
+            {emailInputIsInvalid && (
+              <p className="empty-error">
+                “Enter a valid email address, you missed the “@” character
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="phoneNumber-input">Phone number :</label>
+            <input
+              type="text"
+              id="phoneNumber-input"
+              onChange={phoneNumberValueChangeHandler}
+              className={phoneNumberInputClasses}
+              value={phoneNumberEnteredData}
+              onBlur={phoneNumberInputBlurHandler}
+            ></input>{" "}
+            {phoneNumberInputIsInvalid && (
+              <p className="empty-error">Must not be empty</p>
+            )}
+          </div>
+          <div>
+            {" "}
+            <label htmlFor="mobileNumber-input">Mobile number :</label>
+            <input
+              type="number"
+              id="mobileNumber-input"
+              onChange={mobileNumberValueChangeHandler}
+              className={mobileNumberInputClasses}
+              value={mobileNumberEnteredData}
+              onBlur={mobileNumberInputBlurHandler}
+            ></input>{" "}
+            {mobileNumberInputIsInvalid && (
+              <p className="empty-error">Must not be empty</p>
+            )}
+          </div>
+          <div>
+            {" "}
+            <label htmlFor="adress-input">Adress :</label>
+            <input
+              type="text"
+              id="adress-input"
+              onChange={adressValueChangeHandler}
+              className={adressInputClasses}
+              value={adressEnteredData}
+              onBlur={adressInputBlurHandler}
+            ></input>{" "}
+            {adressInputIsInvalid && (
+              <p className="empty-error">Must not be empty</p>
+            )}
+          </div>
+          <button type="submit" disabled={!formIsValid} onClick={props.onShow} >
             Submit
           </button>
         </div>

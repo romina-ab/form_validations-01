@@ -7,18 +7,25 @@ const useInput = (validateData) => {
   const enteredDataIsValid = validateData(enteredData);
   const inputIsInvalid = !enteredDataIsValid && isTouched;
 
-  const changeHandler = (e) => {
+  const valueChangeHandler = (e) => {
     setEnteredData(e.target.value);
   };
 
-  const inputBlurHandler = () => {
+  const inputBlurHandler = (e) => {
     setIsTouched(true);
   };
+  const reset = () => {
+    setIsTouched(false);
+    setEnteredData("");
+  };
   return {
-    data: enteredData,
-    inputIsInvalid: inputIsInvalid,
-    changeHandler,
+    enteredData,
+    inputIsInvalid,
+    valueChangeHandler,
     inputBlurHandler,
+    enteredDataIsValid,
+    isTouched,
+    reset,
   };
 };
 export default useInput;
