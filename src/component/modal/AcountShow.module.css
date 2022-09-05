@@ -31,7 +31,6 @@
   border: #a1a1a1;
   cursor: not-allowed;
 }
-
 @media (max-width: 40rem) {
   .container {
     display: flex;

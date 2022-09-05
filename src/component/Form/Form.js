@@ -1,8 +1,13 @@
+import { useState } from "react";
 import useInput from "../../hooks/use-input";
+import AcountShow from "../modal/AcountShow";
 
 import "./Form.css";
 const Form = (props) => {
   let formIsValid = false;
+  
+  const [isShown, setIsShown] = useState(false);
+  
   const {
     enteredData: nameEnteredData,
     reset: nameReset,
@@ -84,6 +89,8 @@ const Form = (props) => {
     }
     console.log(nameEnteredData);
     console.log(emailEnteredData);
+    
+   
     nameReset();
     lastNameReset();
     emailReset();
@@ -91,6 +98,10 @@ const Form = (props) => {
     mobileNumberReset();
     adressReset();
   };
+
+  const openHandler =() =>{
+    setIsShown(true);
+  }
 
   return (
     <div>
@@ -187,9 +198,10 @@ const Form = (props) => {
               <p className="empty-error">Must not be empty</p>
             )}
           </div>
-          <button type="submit" disabled={!formIsValid} onClick={props.onShow} >
+          <button type="submit" disabled={!formIsValid} onClick={openHandler}>
             Submit
           </button>
+         {isShown && <AcountShow toggler={isShown} name={"hi"}/>}
         </div>
       </form>
     </div>
