@@ -4,6 +4,10 @@
 .form-title {
   text-align: center;
 }
+.form-container{
+  background: #d9f0f9;
+  padding: 1rem;
+}
 .form-container button {
   background: #5a92af;
   border: 1px solid #5a92af;
@@ -12,7 +16,7 @@
   font-size: 15px;
   font-family: inherit;
   color: white;
-  margin-top: 1rem;
+  margin-top: 1rem ;
   
 }
 .form-container button:hover,
@@ -32,15 +36,11 @@
   border: #a1a1a1;
   cursor: not-allowed;
 }
-.form-container {
-  background: #d9f0f9;
-  padding: 1rem;
-  margin-top: 1rem;
-}
+
 .form-container label,
 input {
   display: block;
-  margin-top: 1rem;
+  margin-top: .75rem;
   width: 100%;
   font-family: inherit;
 }

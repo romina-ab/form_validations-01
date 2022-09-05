@@ -1,13 +1,12 @@
 import { useState } from "react";
 import useInput from "../../hooks/use-input";
 import AcountShow from "../modal/AcountShow";
-
 import "./Form.css";
 const Form = (props) => {
-  let formIsValid = false;
-  
+  let formIsValid = true;
+
   const [isShown, setIsShown] = useState(false);
-  
+
   const {
     enteredData: nameEnteredData,
     reset: nameReset,
@@ -87,10 +86,7 @@ const Form = (props) => {
     if (!formIsValid) {
       return;
     }
-    console.log(nameEnteredData);
-    console.log(emailEnteredData);
-    
-   
+
     nameReset();
     lastNameReset();
     emailReset();
@@ -99,13 +95,15 @@ const Form = (props) => {
     adressReset();
   };
 
-  const openHandler =() =>{
+  const openHandler = () => {
     setIsShown(true);
-  }
+  };
+  const closeHandler = () => {
+    setIsShown(false);
+  };
 
   return (
-    <div>
-      <h1 className="form-title">FORM</h1>
+   
       <form className="form-container" onSubmit={submitHandler}>
         <div>
           <div>
@@ -172,7 +170,7 @@ const Form = (props) => {
             {" "}
             <label htmlFor="mobileNumber-input">Mobile number :</label>
             <input
-              type="number"
+              type="text"
               id="mobileNumber-input"
               onChange={mobileNumberValueChangeHandler}
               className={mobileNumberInputClasses}
@@ -198,13 +196,21 @@ const Form = (props) => {
               <p className="empty-error">Must not be empty</p>
             )}
           </div>
+          <div><label htmlFor="date-input">Date :</label><input htmlFor="date-input" ></input></div>
           <button type="submit" disabled={!formIsValid} onClick={openHandler}>
             Submit
           </button>
-         {isShown && <AcountShow toggler={isShown} name={"hi"}/>}
+          {isShown && (
+            <AcountShow
+              name={nameEnteredData}
+              lastName={"ali"}
+              onClose={closeHandler}
+            />
+          )}
+          {console.log(nameEnteredData)}
         </div>
       </form>
-    </div>
+    
   );
 };
 

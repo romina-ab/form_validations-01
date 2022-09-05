@@ -1,15 +1,17 @@
 import React from "react";
-import useInput from "../../hooks/use-input";
-import Form from "../form/Form";
-import classes from "./AcountShow.module.css";
 import Modal from "./Modal";
+import classes from "./AcountShow.module.css"
 
 const AcountShow = (props) => {
-
+  const {name, lastName} = props;
   return (
-    <Modal>
+    <Modal onClick={props.onClose}>
       <div>
-        <p>{props.name}</p>
+        <p>{name}</p>
+        <p>{lastName}</p>
+        <button  className={classes.button} onClick={props.onClose}>
+            close
+          </button>
       </div>
     </Modal>
   );
