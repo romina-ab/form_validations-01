@@ -7,6 +7,15 @@ const Form = (props) => {
 
   const [isShown, setIsShown] = useState(false);
 
+  let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  let namePattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  let lastNamePattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  let phoneNumberPattern =
+    /^((|0|98|098|0098|\\+98)[1-8][1-9][2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])$/;
+  let mobileNumberPattern =
+    /^(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}$/;
+
+  let addressPattern = "address";
   const {
     enteredData: nameEnteredData,
     reset: nameReset,
@@ -14,7 +23,7 @@ const Form = (props) => {
     enteredDataIsValid: nameEnteredDataIsValid,
     valueChangeHandler: nameValueChangeHandler,
     inputBlurHandler: nameInputBlurHandler,
-  } = useInput((nameEnteredData) => nameEnteredData.trim() !== "");
+  } = useInput((nameEnteredData) => namePattern.test(nameEnteredData));
   const nameInputClasses = nameInputIsInvalid ? "invalid" : "";
 
   const {
@@ -24,7 +33,7 @@ const Form = (props) => {
     enteredDataIsValid: emailEnteredDataIsValid,
     valueChangeHandler: emailValueChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
-  } = useInput((emailEnteredData) => emailEnteredData.includes("@"));
+  } = useInput((emailEnteredData) => emailPattern.test(emailEnteredData));
   const emailInputClasses = emailInputIsInvalid ? "invalid" : "";
 
   const {
@@ -34,7 +43,9 @@ const Form = (props) => {
     enteredDataIsValid: lastNameEnteredDataIsValid,
     valueChangeHandler: lastNameValueChangeHandler,
     inputBlurHandler: lastNameInputBlurHandler,
-  } = useInput((lastNameEnteredData) => lastNameEnteredData.trim() !== "");
+  } = useInput((lastNameEnteredData) =>
+    lastNamePattern.test(lastNameEnteredData)
+  );
   const lastNameInputClasses = lastNameInputIsInvalid ? "invalid" : "";
 
   const {
@@ -44,8 +55,8 @@ const Form = (props) => {
     enteredDataIsValid: phoneNumberEnteredDataIsValid,
     valueChangeHandler: phoneNumberValueChangeHandler,
     inputBlurHandler: phoneNumberInputBlurHandler,
-  } = useInput(
-    (phoneNumberEnteredData) => phoneNumberEnteredData.trim() !== ""
+  } = useInput((phoneNumberEnteredData) =>
+    phoneNumberPattern.test(phoneNumberEnteredData)
   );
   const phoneNumberInputClasses = phoneNumberInputIsInvalid ? "invalid" : "";
 
@@ -56,8 +67,8 @@ const Form = (props) => {
     enteredDataIsValid: mobileNumberEnteredDataIsValid,
     valueChangeHandler: mobileNumberValueChangeHandler,
     inputBlurHandler: mobileNumberInputBlurHandler,
-  } = useInput(
-    (mobileNumberEnteredData) => mobileNumberEnteredData.trim() !== ""
+  } = useInput((mobileNumberEnteredData) =>
+    mobileNumberPattern.test(mobileNumberEnteredData)
   );
   const mobileNumberInputClasses = mobileNumberInputIsInvalid ? "invalid" : "";
 
@@ -115,7 +126,9 @@ const Form = (props) => {
             onBlur={nameInputBlurHandler}
           ></input>
           {nameInputIsInvalid && (
-            <p className="empty-error">Must not be empty</p>
+            <p className="empty-error">
+              Name Input can not contains numbers or signs or be empty!
+            </p>
           )}
         </div>
         <div>
@@ -130,13 +143,15 @@ const Form = (props) => {
             onBlur={lastNameInputBlurHandler}
           ></input>{" "}
           {lastNameInputIsInvalid && (
-            <p className="empty-error">Must not be empty</p>
+            <p className="empty-error">
+              LastName Input can not contains numbers or signs or be empty!
+            </p>
           )}
         </div>
         <div>
           <label htmlFor="email-input">E-mail Address:</label>
           <input
-            type="text"
+            type="email"
             id="email-input"
             onChange={emailValueChangeHandler}
             className={emailInputClasses}
@@ -145,7 +160,7 @@ const Form = (props) => {
           ></input>{" "}
           {emailInputIsInvalid && (
             <p className="empty-error">
-              “Enter a valid email address, you missed the “@” character
+              E-mail Input should be valid and not be empty!
             </p>
           )}
         </div>
@@ -160,7 +175,7 @@ const Form = (props) => {
             onBlur={phoneNumberInputBlurHandler}
           ></input>{" "}
           {phoneNumberInputIsInvalid && (
-            <p className="empty-error">Must not be empty</p>
+            <p className="empty-error">Phone number is not valid!</p>
           )}
         </div>
         <div>
@@ -175,7 +190,7 @@ const Form = (props) => {
             onBlur={mobileNumberInputBlurHandler}
           ></input>{" "}
           {mobileNumberInputIsInvalid && (
-            <p className="empty-error">Must not be empty</p>
+            <p className="empty-error">Mobile phone number is not valid!</p>
           )}
         </div>
         <div>
