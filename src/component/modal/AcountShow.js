@@ -1,17 +1,35 @@
 import React from "react";
 import Modal from "./Modal";
-import classes from "./AcountShow.module.css"
+import classes from "./AcountShow.module.css";
 
 const AcountShow = (props) => {
-  const {name, lastName} = props;
+  const { name, lastName, onClose, acountName, acountNumber, stock } = props;
   return (
-    <Modal onClick={props.onClose}>
-      <div>
-        <p>{name}</p>
-        <p>{lastName}</p>
-        <button  className={classes.button} onClick={props.onClose}>
-            close
-          </button>
+    <Modal onClick={onClose}>
+      <div className={classes.cards}>
+        <div className={classes.card}>
+          <span>Name : </span>
+          <span>{name}</span>
+        </div>
+        <div className={classes.card}>
+          <span>Last name : </span>
+          <span>{lastName}</span>
+        </div>
+        <div className={classes.card}>
+          <span>AcountNumber : </span>
+          <span>{acountName}</span>
+        </div >
+        <div className={classes.card}>
+          <span>Stock : </span>
+          <span>{stock}</span>
+        </div>{" "}
+        <div className={classes.card}>
+          <span>AcountNumber : </span>
+          <span>{acountNumber}</span>
+        </div>
+        <button className={classes.button} onClick={onClose}>
+          Accept
+        </button>
       </div>
     </Modal>
   );
