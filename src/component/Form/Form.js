@@ -1,3 +1,4 @@
+import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import useInput from "../../hooks/use-input";
 import AcountShow from "../modal/AcountShow";
@@ -15,7 +16,6 @@ const Form = (props) => {
   let mobileNumberPattern =
     /^(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}$/;
 
-  let addressPattern = "address";
   const {
     enteredData: nameEnteredData,
     reset: nameReset,
@@ -116,15 +116,17 @@ const Form = (props) => {
     <form className="form-container" onSubmit={submitHandler}>
       <div>
         <div>
-          <label htmlFor="name-input"> Name :</label>
-          <input
-            type="text"
+          <TextField sx={{margin:"1rem 0"}}
             id="name-input"
+            label="Name"
+            multiline
             onChange={nameValueChangeHandler}
             className={nameInputClasses}
             value={nameEnteredData}
             onBlur={nameInputBlurHandler}
-          ></input>
+            fullWidth
+           
+          />
           {nameInputIsInvalid && (
             <p className="empty-error">
               Name Input can not contains numbers or signs or be empty!
@@ -132,16 +134,16 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          {" "}
-          <label htmlFor="lastName-input">LastName :</label>
-          <input
-            type="lastName"
+          <TextField sx={{margin:"1rem 0"}}
+            label="lastName"
+            multiline
+            fullWidth
             id="lastName-input"
             onChange={lastNameValueChangeHandler}
             className={lastNameInputClasses}
             value={lastNameEnteredData}
             onBlur={lastNameInputBlurHandler}
-          ></input>{" "}
+          />
           {lastNameInputIsInvalid && (
             <p className="empty-error">
               LastName Input can not contains numbers or signs or be empty!
@@ -149,15 +151,17 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <label htmlFor="email-input">E-mail Address:</label>
-          <input
+          <TextField sx={{margin:"1rem 0"}}
+            label="email"
+            multiline
+            fullWidth
             type="email"
             id="email-input"
             onChange={emailValueChangeHandler}
             className={emailInputClasses}
             value={emailEnteredData}
             onBlur={emailInputBlurHandler}
-          ></input>{" "}
+          />
           {emailInputIsInvalid && (
             <p className="empty-error">
               E-mail Input should be valid and not be empty!
@@ -165,56 +169,73 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <label htmlFor="phoneNumber-input">Phone number :</label>
-          <input
-            type="text"
+          <TextField sx={{margin:"1rem 0"}}
+            label="phoneNumber"
+            multiline
+            fullWidth
             id="phoneNumber-input"
             onChange={phoneNumberValueChangeHandler}
             className={phoneNumberInputClasses}
             value={phoneNumberEnteredData}
             onBlur={phoneNumberInputBlurHandler}
-          ></input>{" "}
+          />
           {phoneNumberInputIsInvalid && (
             <p className="empty-error">Phone number is not valid!</p>
           )}
         </div>
         <div>
-          {" "}
-          <label htmlFor="mobileNumber-input">Mobile Phone number :</label>
-          <input
-            type="text"
+          <TextField sx={{margin:"1rem 0"}}
+            label="mobileNumber"
+            multiline
+            fullWidth
             id="mobileNumber-input"
             onChange={mobileNumberValueChangeHandler}
             className={mobileNumberInputClasses}
             value={mobileNumberEnteredData}
             onBlur={mobileNumberInputBlurHandler}
-          ></input>{" "}
+          />
           {mobileNumberInputIsInvalid && (
             <p className="empty-error">Mobile phone number is not valid!</p>
           )}
         </div>
         <div>
-          {" "}
-          <label htmlFor="address-input">Current Address :</label>
-          <input
-            type="text"
+          <TextField sx={{margin:"1rem 0"}}
+            label="address"
+            multiline
+            fullWidth
             id="address-input"
             onChange={addressValueChangeHandler}
             className={addressInputClasses}
             value={addressEnteredData}
             onBlur={addressInputBlurHandler}
-          ></input>{" "}
+          />
           {addressInputIsInvalid && (
             <p className="empty-error">Must not be empty</p>
           )}
         </div>
         <div>
-          <label htmlFor="date-input">Date :</label>
-          <input htmlFor="date-input"></input>
+          <TextField sx={{margin:"1rem 0"}}
+            label="date"
+            multiline
+            fullWidth
+            id="date-input"
+            onChange={addressValueChangeHandler}
+            className={addressInputClasses}
+            value={addressEnteredData}
+            onBlur={addressInputBlurHandler}
+          />
+          {addressInputIsInvalid && (
+            <p className="empty-error">Must not be empty</p>
+          )}
         </div>
-        <button disabled={!formIsValid} onClick={openHandler}>
+
+        <Button
+          variant="contained"
+          disabled={!formIsValid}
+          onClick={openHandler}
+        >
           Submit
-        </button>
+        </Button>
         {isShown && (
           <AcountShow
             name={nameEnteredData}

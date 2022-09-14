@@ -33,20 +33,12 @@
   border: #a1a1a1;
   cursor: not-allowed;
 }
-.form-container label,
-input {
-  display: block;
-  margin-top: 0.75rem;
-  width: 100%;
-  font-family: inherit;
-}
+
 .form-container .invalid {
   background-color: #faacac;
   border: 2px solid red !important;
 }
-.form-container input {
-  padding: 0.25rem 0.5rem;
-}
+
 .form-container input:focus {
   outline: none;
   color: white;
@@ -71,7 +63,6 @@ input {
     display: block;
     margin: 2rem auto;
     width: 60%;
-    
   }
 }
 @media (max-width: 10rem) {

@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
 import classes from "./AcountShow.module.css";
+import { Button } from "@mui/material";
 
 const AcountShow = (props) => {
   const { name, lastName, onClose, acountName, acountNumber, stock } = props;
@@ -18,7 +19,7 @@ const AcountShow = (props) => {
         <div className={classes.card}>
           <span>AcountNumber : </span>
           <span>{acountName}</span>
-        </div >
+        </div>
         <div className={classes.card}>
           <span>Stock : </span>
           <span>{stock}</span>
@@ -27,9 +28,13 @@ const AcountShow = (props) => {
           <span>AcountNumber : </span>
           <span>{acountNumber}</span>
         </div>
-        <button className={classes.button} onClick={onClose}>
-          Accept
-        </button>
+        <Button
+          variant="contained"
+          className={classes.button}
+          onClick={onClose}
+        >
+          Close
+        </Button>
       </div>
     </Modal>
   );
