@@ -1,8 +1,12 @@
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { useState } from "react";
 import useInput from "../../hooks/use-input";
 import AcountShow from "../modal/AcountShow";
 import "./Form.css";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import JalaliDatePicker from "../DateTest";
+
 const Form = (props) => {
   let formIsValid = true;
 
@@ -116,7 +120,8 @@ const Form = (props) => {
     <form className="form-container" onSubmit={submitHandler}>
       <div>
         <div>
-          <TextField sx={{margin:"1rem 0"}}
+          <TextField
+            sx={{ margin: "1rem 0", textAlign: "right" }}
             id="name-input"
             label="Name"
             multiline
@@ -125,7 +130,6 @@ const Form = (props) => {
             value={nameEnteredData}
             onBlur={nameInputBlurHandler}
             fullWidth
-           
           />
           {nameInputIsInvalid && (
             <p className="empty-error">
@@ -134,7 +138,8 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <TextField sx={{margin:"1rem 0"}}
+          <TextField
+            sx={{ margin: "1rem 0" }}
             label="lastName"
             multiline
             fullWidth
@@ -151,7 +156,8 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <TextField sx={{margin:"1rem 0"}}
+          <TextField
+            sx={{ margin: "1rem 0" }}
             label="email"
             multiline
             fullWidth
@@ -169,7 +175,8 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <TextField sx={{margin:"1rem 0"}}
+          <TextField
+            sx={{ margin: "1rem 0" }}
             label="phoneNumber"
             multiline
             fullWidth
@@ -184,7 +191,8 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <TextField sx={{margin:"1rem 0"}}
+          <TextField
+            sx={{ margin: "1rem 0" }}
             label="mobileNumber"
             multiline
             fullWidth
@@ -199,7 +207,8 @@ const Form = (props) => {
           )}
         </div>
         <div>
-          <TextField sx={{margin:"1rem 0"}}
+          <TextField
+            sx={{ margin: "1rem 0" }}
             label="address"
             multiline
             fullWidth
@@ -212,27 +221,16 @@ const Form = (props) => {
           {addressInputIsInvalid && (
             <p className="empty-error">Must not be empty</p>
           )}
-        </div>
+        </div>  
         <div>
-          <TextField sx={{margin:"1rem 0"}}
-            label="date"
-            multiline
-            fullWidth
-            id="date-input"
-            onChange={addressValueChangeHandler}
-            className={addressInputClasses}
-            value={addressEnteredData}
-            onBlur={addressInputBlurHandler}
-          />
-          {addressInputIsInvalid && (
-            <p className="empty-error">Must not be empty</p>
-          )}
+          <JalaliDatePicker />
         </div>
 
         <Button
           variant="contained"
           disabled={!formIsValid}
           onClick={openHandler}
+          className="buttonHandler"
         >
           Submit
         </Button>

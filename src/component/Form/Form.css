@@ -5,10 +5,10 @@
   background: #d9f0f9;
   padding: 1rem;
   width: 25rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
   height: auto;
 }
-.form-container button {
+button.buttonHandler {
   background: #5a92af;
   border: 1px solid #5a92af;
   padding: 0.35rem 1rem;
@@ -18,22 +18,21 @@
   color: white;
   margin-top: 1rem;
 }
-.form-container button:hover,
-.form-container button:focus {
+button.buttonHandler:hover,
+button.buttonHandler:focus {
   background: #d9f9f4;
   border: 2px solid #437d9b;
   color: #437d9b;
   cursor: pointer;
 }
-.form-container button:disabled,
-.form-container button:disabled:hover,
-.form-container button:disabled:focus {
+button.buttonHandler:disabled,
+button.buttonHandler:disabled:hover,
+button.buttonHandler:disabled:focus {
   background: #cccc;
   color: black;
   border: #a1a1a1;
   cursor: not-allowed;
 }
-
 .form-container .invalid {
   background-color: #faacac;
   border: 2px solid red !important;
@@ -50,10 +49,9 @@
 }
 .empty-error {
   color: red;
-  margin: 0;
+  margin-top: -1rem;
   font-size: 13px;
 }
-
 @media (max-width: 30rem) {
   .form-container {
     width: 100%;
