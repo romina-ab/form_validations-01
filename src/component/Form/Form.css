@@ -68,3 +68,7 @@ button.buttonHandler:disabled:focus {
     background: #ccc;
   }
 }
+
+.inputs{
+  margin-top: 1rem;
+}

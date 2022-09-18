@@ -6,6 +6,9 @@ import "./Form.css";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import JalaliDatePicker from "../DateTest";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Form = (props) => {
   let formIsValid = true;
@@ -20,6 +23,8 @@ const Form = (props) => {
   let mobileNumberPattern =
     /^(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}$/;
 
+
+
   const {
     enteredData: nameEnteredData,
     reset: nameReset,
@@ -27,6 +32,7 @@ const Form = (props) => {
     enteredDataIsValid: nameEnteredDataIsValid,
     valueChangeHandler: nameValueChangeHandler,
     inputBlurHandler: nameInputBlurHandler,
+    popUpError
   } = useInput((nameEnteredData) => namePattern.test(nameEnteredData));
   const nameInputClasses = nameInputIsInvalid ? "invalid" : "";
 
@@ -114,6 +120,17 @@ const Form = (props) => {
   const closeHandler = (e) => {
     e.preventDefault();
     setIsShown(false);
+    toast.success("ثبت شد !", {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      rtl:true,
+    });
   };
 
   return (
@@ -130,6 +147,7 @@ const Form = (props) => {
             value={nameEnteredData}
             onBlur={nameInputBlurHandler}
             fullWidth
+            
           />
           {nameInputIsInvalid && (
             <p className="empty-error">
@@ -221,8 +239,8 @@ const Form = (props) => {
           {addressInputIsInvalid && (
             <p className="empty-error">Must not be empty</p>
           )}
-        </div>  
-        <div>
+        </div>
+        <div className="inputs">
           <JalaliDatePicker />
         </div>
 
@@ -231,7 +249,7 @@ const Form = (props) => {
           disabled={!formIsValid}
           onClick={openHandler}
           className="buttonHandler"
-          
+
         >
           ثبت
         </Button>

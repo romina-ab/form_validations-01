@@ -8,7 +8,7 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-
+import { ToastContainer } from 'react-toastify';
 function App() {
   const theme = createTheme({
     direction: "rtl", // Both here and <body dir="rtl">
@@ -25,6 +25,7 @@ function App() {
           <ThemeProvider theme={theme}>
             <Head />
             <Form />
+            <ToastContainer rtl/>
           </ThemeProvider>
         </CacheProvider>
       </LocalizationProvider>
