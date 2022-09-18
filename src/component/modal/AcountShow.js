@@ -10,27 +10,27 @@ const AcountShow = (props) => {
     <Modal onClick={onClose}>
       <div className={classes.cards}>
         <div className={classes.card}>
-          <span>Name : </span>
+          <span>نام : </span>
           <span>{name}</span>
         </div>
         <div className={classes.card}>
-          <span>Last name : </span>
+          <span>نام خانوادگی : </span>
           <span>{lastName}</span>
         </div>
         <div className={classes.card}>
-          <span>AcountNumber : </span>
+          <span>نام حساب : </span>
           <span>{acountName}</span>
         </div>
         <div className={classes.card}>
-          <span>Stock : </span>
+          <span>شماره حساب : </span>
           <span>{stock}</span>
         </div>{" "}
         <div className={classes.card}>
-          <span>AcountNumber : </span>
+          <span>موجودی حساب : </span>
           <span>{acountNumber}</span>
         </div>
         <Button variant="contained" onClick={onClose} className="buttonHandler">
-          Close
+          بستن
         </Button>
       </div>
     </Modal>

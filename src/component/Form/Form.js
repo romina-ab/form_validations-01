@@ -119,11 +119,11 @@ const Form = (props) => {
   return (
     <form className="form-container" onSubmit={submitHandler}>
       <div>
-        <div>
+        <div dir="rtl">
           <TextField
             sx={{ margin: "1rem 0", textAlign: "right" }}
             id="name-input"
-            label="Name"
+            label="نام"
             multiline
             onChange={nameValueChangeHandler}
             className={nameInputClasses}
@@ -140,7 +140,7 @@ const Form = (props) => {
         <div>
           <TextField
             sx={{ margin: "1rem 0" }}
-            label="lastName"
+            label="نام خانوادگی"
             multiline
             fullWidth
             id="lastName-input"
@@ -158,7 +158,7 @@ const Form = (props) => {
         <div>
           <TextField
             sx={{ margin: "1rem 0" }}
-            label="email"
+            label="پست الکترونیک"
             multiline
             fullWidth
             type="email"
@@ -177,7 +177,7 @@ const Form = (props) => {
         <div>
           <TextField
             sx={{ margin: "1rem 0" }}
-            label="phoneNumber"
+            label="شماره تلفن ثابت"
             multiline
             fullWidth
             id="phoneNumber-input"
@@ -193,7 +193,7 @@ const Form = (props) => {
         <div>
           <TextField
             sx={{ margin: "1rem 0" }}
-            label="mobileNumber"
+            label="شماره تلفن همراه"
             multiline
             fullWidth
             id="mobileNumber-input"
@@ -209,7 +209,7 @@ const Form = (props) => {
         <div>
           <TextField
             sx={{ margin: "1rem 0" }}
-            label="address"
+            label="نشانی منزل"
             multiline
             fullWidth
             id="address-input"
@@ -231,8 +231,9 @@ const Form = (props) => {
           disabled={!formIsValid}
           onClick={openHandler}
           className="buttonHandler"
+          
         >
-          Submit
+          ثبت
         </Button>
         {isShown && (
           <AcountShow
