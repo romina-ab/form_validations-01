@@ -35,7 +35,7 @@ button.buttonHandler:disabled:focus {
 }
 .form-container .invalid {
   background-color: #faacac;
-  border: 2px solid red !important;
+  
 }
 
 .form-container input:focus {

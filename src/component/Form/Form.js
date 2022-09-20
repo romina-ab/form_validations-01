@@ -9,21 +9,18 @@ import JalaliDatePicker from "../DateTest";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Form = (props) => {
   let formIsValid = true;
 
   const [isShown, setIsShown] = useState(false);
 
   let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-  let namePattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-  let lastNamePattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  let namePattern =  /^[\u0600-\u06FF\s]+$/;
+  let lastNamePattern =  /^[\u0600-\u06FF\s]+$/;
   let phoneNumberPattern =
     /^((|0|98|098|0098|\\+98)[1-8][1-9][2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])$/;
   let mobileNumberPattern =
     /^(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}$/;
-
-
 
   const {
     enteredData: nameEnteredData,
@@ -32,7 +29,7 @@ const Form = (props) => {
     enteredDataIsValid: nameEnteredDataIsValid,
     valueChangeHandler: nameValueChangeHandler,
     inputBlurHandler: nameInputBlurHandler,
-    popUpError
+    
   } = useInput((nameEnteredData) => namePattern.test(nameEnteredData));
   const nameInputClasses = nameInputIsInvalid ? "invalid" : "";
 
@@ -129,7 +126,7 @@ const Form = (props) => {
       draggable: true,
       progress: undefined,
       theme: "colored",
-      rtl:true,
+      rtl: true,
     });
   };
 
@@ -147,11 +144,10 @@ const Form = (props) => {
             value={nameEnteredData}
             onBlur={nameInputBlurHandler}
             fullWidth
-            
           />
           {nameInputIsInvalid && (
-            <p className="empty-error">
-              Name Input can not contains numbers or signs or be empty!
+            <p className="empty-error"> 
+              لطفا اطلاعات معتبر خواسته شده را وارد نمایید
             </p>
           )}
         </div>
@@ -169,7 +165,7 @@ const Form = (props) => {
           />
           {lastNameInputIsInvalid && (
             <p className="empty-error">
-              LastName Input can not contains numbers or signs or be empty!
+             لطفا اطلاعات معتبر خواسته شده را وارد نمایید
             </p>
           )}
         </div>
@@ -188,7 +184,7 @@ const Form = (props) => {
           />
           {emailInputIsInvalid && (
             <p className="empty-error">
-              E-mail Input should be valid and not be empty!
+             لطفا اطلاعات معتبر خواسته شده را وارد نمایید
             </p>
           )}
         </div>
@@ -221,7 +217,7 @@ const Form = (props) => {
             onBlur={mobileNumberInputBlurHandler}
           />
           {mobileNumberInputIsInvalid && (
-            <p className="empty-error">Mobile phone number is not valid!</p>
+            <p className="empty-error">لطفا اطلاعات معتبر خواسته شده را وارد نمایید</p>
           )}
         </div>
         <div>
@@ -237,7 +233,7 @@ const Form = (props) => {
             onBlur={addressInputBlurHandler}
           />
           {addressInputIsInvalid && (
-            <p className="empty-error">Must not be empty</p>
+            <p className="empty-error">لطفا اطلاعات معتبر خواسته شده را وارد نمایید</p>
           )}
         </div>
         <div className="inputs">
@@ -249,7 +245,6 @@ const Form = (props) => {
           disabled={!formIsValid}
           onClick={openHandler}
           className="buttonHandler"
-
         >
           ثبت
         </Button>

@@ -8,10 +8,17 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
+// import { zhCN } from "@mui/material/locale";
+
 function App() {
   const theme = createTheme({
     direction: "rtl", // Both here and <body dir="rtl">
+    //   palette: {
+    //     primary: { main: "#1976d2" },
+    //   },
+    // },
+    // zhCN
   });
   // Create rtl cache
   const cacheRtl = createCache({
@@ -25,7 +32,7 @@ function App() {
           <ThemeProvider theme={theme}>
             <Head />
             <Form />
-            <ToastContainer rtl/>
+            <ToastContainer rtl />
           </ThemeProvider>
         </CacheProvider>
       </LocalizationProvider>
